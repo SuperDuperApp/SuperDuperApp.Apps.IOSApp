@@ -1,0 +1,24 @@
+PODS:
+  - Bolts (1.1.5):
+    - Bolts/AppLinks (= 1.1.5)
+    - Bolts/Tasks (= 1.1.5)
+  - Bolts/AppLinks (1.1.5):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.1.5)
+  - GoogleAnalytics (3.13.0)
+  - Parse (1.6.0):
+    - Bolts (~> 1.1.3)
+  - Pinterest-iOS (2.3)
+
+DEPENDENCIES:
+  - GoogleAnalytics
+  - Parse (= 1.6)
+  - Pinterest-iOS
+
+SPEC CHECKSUMS:
+  Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
+  Parse: 049e2ce21644e2ffa61534dc6ce51b38e3e03846
+  Pinterest-iOS: e79d1536a7a275e3340cdeb678e85b350f798562
+
+COCOAPODS: 0.38.2

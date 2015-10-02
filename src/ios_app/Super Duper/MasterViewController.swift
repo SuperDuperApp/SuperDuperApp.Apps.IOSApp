@@ -25,13 +25,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     var iMinSessions = 3
     var iTryAgainSessions = 1
     
+    //
+    //Delete "feedback" pop from app code
+    //
+    /*
     func rateMe() {
+    
         var neverRate = NSUserDefaults.standardUserDefaults().boolForKey("neverRate")
         var numLaunches = NSUserDefaults.standardUserDefaults().integerForKey("numLaunches") + 1
         var storedVersion = NSUserDefaults.standardUserDefaults().stringForKey("version")
         
         let nsBundleObject: AnyObject? = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"]
-        let build = nsBundleObject as! String
+        let build = nsBundleObject as String
         
         
         
@@ -41,7 +46,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             if (numLaunches >= iMinSessions) {
                 NSUserDefaults.standardUserDefaults().setObject(build, forKey: "version")
                 NSUserDefaults.standardUserDefaults().setInteger(0, forKey: "numLaunches")
-                showRateMe()                
+                
+                showRateMe()
             } else {
                 NSUserDefaults.standardUserDefaults().setInteger(numLaunches, forKey: "numLaunches")
             }
@@ -49,9 +55,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         
     }
+
+    
+    
+    //
+    //Delete "feedback" pop from app code
+    //
     
     func showRateMe() {
         var alert = UIAlertController(title: "Enjoying SuperDuper?", message: "Your 5-star rating helps us add colors", preferredStyle: UIAlertControllerStyle.Alert)
+        
         alert.addAction(UIAlertAction(title: "Yes, Rate it 5 stars", style: UIAlertActionStyle.Default, handler: { alertAction in
             UIApplication.sharedApplication().openURL(NSURL(string : "itms://itunes.apple.com/us/app/apple-store/id955250799?mt=8")!)
             alert.dismissViewControllerAnimated(true, completion: nil)
@@ -74,6 +87,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }))
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    */
     
     func showLoader(show:Bool) {
         if (show) {
@@ -153,7 +167,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let infoButton = UIBarButtonItem(image: UIImage(named: "SuperDuper_infoIcon.png"), style: UIBarButtonItemStyle.Plain, target: self, action: "showInfo")
         self.navigationItem.rightBarButtonItem = infoButton
-        rateMe()
+        //rateMe()
 
         
         
@@ -187,7 +201,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 self.tableView.reloadData()
                 
                 for item in self.items {
-                    self.getBrandPhotos(item as! PFObject, callback: {
+                    self.getBrandPhotos(item as PFObject, callback: {
                        self.tableView.reloadData()
                         self.showLoader(false)
                     });
@@ -203,7 +217,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func showInfo() {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let infoVC: InfoViewController = storyboard.instantiateViewControllerWithIdentifier("infoView") as! InfoViewController
+        let infoVC: InfoViewController = storyboard.instantiateViewControllerWithIdentifier("infoView") as InfoViewController
         
         let nc: UINavigationController = UINavigationController(rootViewController: infoVC)
         
@@ -235,9 +249,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                     
                     
                     for (index, p) in enumerate(objects) {
-                        var photo = objects[index] as! PFObject
-                        var pName = photo["name"] as! String
-                        var imageFile = photo["image"] as! PFFile
+                        var photo = objects[index] as PFObject
+                        var pName = photo["name"] as String
+                        var imageFile = photo["image"] as PFFile
                         if (index == 0) {
                             imageFile.getDataInBackgroundWithBlock({(NSData imageData, NSError error) in
                                 if (error != nil) {
@@ -282,7 +296,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func insertNewObject(sender: AnyObject) {
         let context = self.fetchedResultsController.managedObjectContext
         let entity = self.fetchedResultsController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) as! NSManagedObject
+        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) as NSManagedObject
              
         // If appropriate, configure the new managed object.
         // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
@@ -305,7 +319,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         if let indexPath = self.tableView.indexPathForSelectedRow() {
             var object: AnyObject = self.items.objectAtIndex(indexPath.row);
-            (segue.destinationViewController as! ProductsTableViewController).detailItem = object
+            (segue.destinationViewController as ProductsTableViewController).detailItem = object
         }
         
         
@@ -432,7 +446,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         self.configureCell(cell, atIndexPath: indexPath)
         
         
@@ -475,7 +489,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             var purpleColor = UIColor(rgba: "#4D1549")
             
             //if (newRow + 1 < self.items.count) {
-                let object = self.items.objectAtIndex(indexPath.row) as! PFObject
+                let object = self.items.objectAtIndex(indexPath.row) as PFObject
                 var contentView = self.customCell(object, cell:cell, index:0)
                 //button1.tag = newRow
                 
@@ -672,11 +686,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         return mailComposerVC
     }
-    
+    /*
     func showSendMailErrorAlert() {
         let sendMailErrorAlert = UIAlertView(title: "Oops", message: "It doesn't look like your device is set up to send email.  Please check your email configuration.", delegate: self, cancelButtonTitle: "OK")
         sendMailErrorAlert.show()
     }
+    */
     
     // MARK: MFMailComposeViewControllerDelegate Method
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {

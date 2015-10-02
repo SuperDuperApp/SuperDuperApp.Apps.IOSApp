@@ -18,8 +18,8 @@ class InfoViewController: UIViewController {
         
         
         //Then just cast the object as a String, but be careful, you may want to double check for nil
-        let version = nsObject as! String
-        let build = nsBundleObject as! String
+        let version = nsObject as String
+        let build = nsBundleObject as String
         self.title = "v" + version + "(" + build + ")"
         
 

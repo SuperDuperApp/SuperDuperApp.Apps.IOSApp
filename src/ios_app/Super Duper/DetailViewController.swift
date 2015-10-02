@@ -96,13 +96,13 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         
         
         if (self.matchPhotos.count > 0) {
-            var pColor = self.product!["color"] as! String
-            var bName = self.brand!["name"] as! String
-            var mpColor = self.matchedProduct!["color"] as! String
-            var mbName = self.matchedProductBrand!["name"] as! String
+            var pColor = self.product!["color"] as String
+            var bName = self.brand!["name"] as String
+            var mpColor = self.matchedProduct!["color"] as String
+            var mbName = self.matchedProductBrand!["name"] as String
             
             var photo = self.matchPhotos[self.currentIndex] as? PFObject
-            var imageFile = photo!["image"] as! PFFile
+            var imageFile = photo!["image"] as PFFile
             let imageUrl = imageFile.url
             
             let sourceUrl: NSString = "http://getsuperduper.com"
@@ -110,12 +110,12 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
             
             
             
-            (segue.destinationViewController as! ShareTableViewController).bName = bName
-            (segue.destinationViewController as! ShareTableViewController).pColor = pColor
-            (segue.destinationViewController as! ShareTableViewController).mbName = mbName
-            (segue.destinationViewController as! ShareTableViewController).mpColor = mpColor
-            (segue.destinationViewController as! ShareTableViewController).desc = description as String
-            (segue.destinationViewController as! ShareTableViewController).imageUrl = imageUrl
+            (segue.destinationViewController as ShareTableViewController).bName = bName
+            (segue.destinationViewController as ShareTableViewController).pColor = pColor
+            (segue.destinationViewController as ShareTableViewController).mbName = mbName
+            (segue.destinationViewController as ShareTableViewController).mpColor = mpColor
+            (segue.destinationViewController as ShareTableViewController).desc = description as String
+            (segue.destinationViewController as ShareTableViewController).imageUrl = imageUrl
         } else {
             let alertController = UIAlertController(title: "SuperDuper", message:
                 "We're still working on this match! Once we have a photo here, you will be able to share it. In the meantime, go Back and persue other colors!", preferredStyle: UIAlertControllerStyle.Alert)
@@ -157,7 +157,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
             })
             
             var tracker = GAI.sharedInstance().defaultTracker
-            tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "product_selected", label: "ui_action", value: nil).build() as [NSObject : AnyObject])
+//            tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "product_selected", label: "ui_action", value: nil).build() as [NSObject : AnyObject])
         }
     }
     
@@ -239,13 +239,13 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         
         if self.matchPhotos.count == 0 {
             //var image = UIImage(named: "no_image.jpg")
-            var app = UIApplication.sharedApplication().delegate as! AppDelegate
+            var app = UIApplication.sharedApplication().delegate as AppDelegate
             var image = app.noPics["no_shoot"]
             self.matchImages.append(image!)
             callback()
         } else {
             
-            self.downloadPhoto(0, photo: self.matchPhotos[0] as! PFObject, callback: callback)
+            self.downloadPhoto(0, photo: self.matchPhotos[0] as PFObject, callback: callback)
             /*
             for (index, photo) in enumerate(self.matchPhotos) {
                 self.matchImages.insert(UIImage(named: "Icon.png")!, atIndex:index)
@@ -277,7 +277,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     
     func downloadPhoto(index: Int, photo:PFObject, callback: (() -> Void)!) {
         var newIndex = index
-        var imageFile = photo["image"] as! PFFile
+        var imageFile = photo["image"] as PFFile
         imageFile.getDataInBackgroundWithBlock({(NSData imageData, NSError error) in
             if (error != nil) {
                 
@@ -286,7 +286,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
                 self.matchImages.append(image!)
                 newIndex++
                 if (newIndex < self.matchPhotos.count) {
-                    self.downloadPhoto(newIndex, photo: self.matchPhotos[newIndex] as! PFObject, callback: callback)
+                    self.downloadPhoto(newIndex, photo: self.matchPhotos[newIndex] as PFObject, callback: callback)
                 } else {
                     callback()
                 }
@@ -298,7 +298,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController?
     {
-        var index = (viewController as! MatchViewController).pageIndex
+        var index = (viewController as MatchViewController).pageIndex
         
         if (index == 0) || (index == NSNotFound) {
             return nil
@@ -312,7 +312,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
     {
-        var index = (viewController as! MatchViewController).pageIndex
+        var index = (viewController as MatchViewController).pageIndex
         
         if index == NSNotFound {
             return nil
@@ -336,7 +336,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         
         
         // Create a new view controller and pass suitable data.
-        let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MatchViewController") as! MatchViewController
+        let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MatchViewController") as MatchViewController
         pageContentViewController.image = self.matchImages[index]
         pageContentViewController.pageIndex = index
         self.currentIndex = index
@@ -382,8 +382,8 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
-            var pColor = self.product!["color"] as! String
-            var bName = self.brand!["name"] as! String
+            var pColor = self.product!["color"] as String
+            var bName = self.brand!["name"] as String
             mailComposeViewController.setToRecipients(["Duper@getsuperduper.com"])
             mailComposeViewController.setSubject("Dupe Suggestion for " + bName + " " + pColor)
 
@@ -400,13 +400,13 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         if (self.matchPhotos.count > 0) {
             
             
-            var pColor = self.product!["color"] as! String
-            var bName = self.brand!["name"] as! String
-            var mpColor = self.matchedProduct!["color"] as! String
-            var mbName = self.matchedProductBrand!["name"] as! String
-            var activeController = self.pageViewController!.viewControllers.first! as! MatchViewController
+            var pColor = self.product!["color"] as String
+            var bName = self.brand!["name"] as String
+            var mpColor = self.matchedProduct!["color"] as String
+            var mbName = self.matchedProductBrand!["name"] as String
+            var activeController = self.pageViewController!.viewControllers.first! as MatchViewController
             var photo = self.matchPhotos[activeController.pageIndex] as? PFObject
-            var imageFile = photo!["image"] as! PFFile
+            var imageFile = photo!["image"] as PFFile
             let imageUrl = imageFile.url
             
             let sourceUrl: NSString = "http://getsuperduper.com"
@@ -429,10 +429,10 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
 
-            var pColor = self.product!["color"] as! String
-            var bName = self.brand!["name"] as! String
-            var mpColor = self.matchedProduct!["color"] as! String
-            var mbName = self.matchedProductBrand!["name"] as! String
+            var pColor = self.product!["color"] as String
+            var bName = self.brand!["name"] as String
+            var mpColor = self.matchedProduct!["color"] as String
+            var mbName = self.matchedProductBrand!["name"] as String
             
             mailComposeViewController.setToRecipients(["Duper@getsuperduper.com"])
             mailComposeViewController.setSubject("NOT DUPES: " + bName + " " + pColor + " + " + mbName + " " + mpColor)
@@ -449,7 +449,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
             self.matchIndex++
             self.loadMatch()
             var tracker = GAI.sharedInstance().defaultTracker
-            tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "next_match", label: "ui_action", value: nil).build() as [NSObject : AnyObject])
+//            tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "next_match", label: "ui_action", value: nil).build() as [NSObject : AnyObject])
         }
     }
     
@@ -464,7 +464,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         var brandName = ""
         
         if (self.matchedProductBrand != nil) {
-            brandName = self.matchedProductBrand!["name"] as! String
+            brandName = self.matchedProductBrand!["name"] as String
         }
 
         
@@ -807,11 +807,11 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     func showData() {
         var price = Double(0)
         if (self.product!["price"] is Double) {
-            price = self.product!["price"] as! Double
+            price = self.product!["price"] as Double
         }
         
         
-        var brandStr = self.brand!["name"] as! String
+        var brandStr = self.brand!["name"] as String
         brandStr += "\n"
         
         var copyStr = ""
@@ -820,17 +820,17 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         if (self.items.count > 0) {
             var mPrice = Double(0)
             if (self.matchedProduct!["price"] is Double) {
-                mPrice = self.matchedProduct!["price"] as! Double
+                mPrice = self.matchedProduct!["price"] as Double
             }
             
-            var mBrandStr = self.matchedProductBrand!["name"] as! String
+            var mBrandStr = self.matchedProductBrand!["name"] as String
             mBrandStr += "\n"
             var cLbl = self.matchedProduct!["color"] as? String
             matchColorLabel!.text = (cLbl != "?") ? cLbl : ""
             matchBrandLabel!.text = mBrandStr
             matchPriceLabel!.text = (mPrice > 0) ? NSString(format:"$%.2f", mPrice) as String : ""
             
-            copyStr = self.match!["displayCopy"] as! String
+            copyStr = self.match!["displayCopy"] as String
             html += copyStr
             html += "</span></p></body>"
         } else {
@@ -860,12 +860,12 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
             
             
             //var image = UIImage(named: "no_dupes.jpg")
-            var app = UIApplication.sharedApplication().delegate as! AppDelegate
+            var app = UIApplication.sharedApplication().delegate as AppDelegate
             var image = app.noPics["no_dupes"]
             
             if (items.count > 0) {
                 //image = UIImage(named: "SuperDuper_appScreens_results_noShoot2.jpg")
-                var app = UIApplication.sharedApplication().delegate as! AppDelegate
+                var app = UIApplication.sharedApplication().delegate as AppDelegate
                 var image = app.noPics["no_shoot"]
             }
             

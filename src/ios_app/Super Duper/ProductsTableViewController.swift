@@ -62,7 +62,7 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
     var detailItem: AnyObject? {
         didSet {
             self.showLoader(true)
-            var obj = self.detailItem as! PFObject
+            var obj = self.detailItem as PFObject
             self.navigationItem.title = obj["name"] as? String
             
             // Update the view.
@@ -83,7 +83,7 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
             })
             
             var tracker = GAI.sharedInstance().defaultTracker
-            tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "brand_selected", label: obj["name"] as? String, value: nil).build() as [NSObject : AnyObject])
+//            tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "brand_selected", label: obj["name"] as? String, value: nil).build() as [NSObject : AnyObject])
         }
     }
 
@@ -108,20 +108,20 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath) as UITableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         // Configure the cell...
-        let object = self.items.objectAtIndex(indexPath.row) as! PFObject
+        let object = self.items.objectAtIndex(indexPath.row) as PFObject
         
-        var lbl : UILabel = cell.viewWithTag(999) as! UILabel
+        var lbl : UILabel = cell.viewWithTag(999) as UILabel
         lbl.text = object["color"] as? String
         
         var vw = cell.viewWithTag(998)
         
         var hex = "#eaeaea"
         
-        if (object["hex"] as! NSString != "") {
-            hex = object["hex"] as! NSString as String
+        if (object["hex"] as NSString != "") {
+            hex = object["hex"] as NSString as String
         }
         
         var backgroundColor = UIColor(rgba: hex)
@@ -184,7 +184,7 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
         
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
-            var bName = self.detailItem!["name"] as! String
+            var bName = self.detailItem!["name"] as String
             mailComposeViewController.setToRecipients(["Duper@getsuperduper.com"])
             mailComposeViewController.setSubject("Color Suggestion for " + bName )
             
@@ -219,7 +219,7 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
         
         if let indexPath = self.tableView.indexPathForSelectedRow() {
             var object: AnyObject = self.items.objectAtIndex(indexPath.row);
-            (segue.destinationViewController as! DetailViewController).detailItem = object
+            (segue.destinationViewController as DetailViewController).detailItem = object
         }
         
 

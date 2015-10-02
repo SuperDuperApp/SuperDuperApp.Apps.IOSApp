@@ -79,16 +79,16 @@ class ShareTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("shareCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("shareCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
         switch indexPath.row {
         case 0:
-            cell.textLabel!.text = "Pinterest"
+            cell.textLabel.text = "Pinterest"
         case 1:
-            cell.textLabel!.text = "Instagram"
+            cell.textLabel.text = "Instagram"
         default:
-            cell.textLabel!.text = "Facebook"
+            cell.textLabel.text = "Facebook"
             
         }
         

@@ -7,5 +7,5 @@
 
 #import <Pinterest/Pinterest.h>
 #import "PinterestWrapper.h"
-#import <Google/Analytics.h>
+#import <GAI.h>
 #endif

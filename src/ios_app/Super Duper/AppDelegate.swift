@@ -10,12 +10,6 @@ import UIKit
 import CoreData
 import Parse
 
-
-
-
-
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -38,18 +32,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         gai.trackerWithTrackingId("UA-60750666-1")
         
         var tracker = GAI.sharedInstance().defaultTracker
-        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "app_launched", label: "App Launched", value: nil).build() as [NSObject : AnyObject])
+//        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "app_launched", label: "App Launched", value: nil).build() as [NSObject : AnyObject])
         
+        if let text = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
+            println(text)
+        }
 
         var pageControl : UIPageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = UIColor(rgba: "#B5B9C8")
         pageControl.currentPageIndicatorTintColor = UIColor(rgba: "#B8006F")        
         
-        Parse.enableLocalDatastore()
+        
         Parse.setApplicationId("3sC6jbS7mjqMHE9x2aanasCy6Bd47RnwvA3mQfWo", clientKey: "677CVNL6oDSejztx1HxkW1RNbwPRHWrNj5wPgm5H")
+        Parse.enableLocalDatastore()
         // Override point for customization after application launch.
-        let navigationController = self.window!.rootViewController as! UINavigationController
-        let controller = navigationController.topViewController as! MasterViewController
+        let navigationController = self.window!.rootViewController as UINavigationController
+        let controller = navigationController.topViewController as MasterViewController
         controller.managedObjectContext = self.managedObjectContext
         
         self.getNoPics()
@@ -73,8 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 
                 for item in objects {
-                    var imageFile = item["image"] as! PFFile
-                    var name = item["name"] as! String
+                    var imageFile = item["image"] as PFFile
+                    var name = item["name"] as String
                     imageFile.getDataInBackgroundWithBlock({(NSData imageData, NSError error) in
                         if (error != nil) {
                             
@@ -121,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.getsuperduper.Super_Duper" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as! NSURL
+        return urls[urls.count-1] as NSURL
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {

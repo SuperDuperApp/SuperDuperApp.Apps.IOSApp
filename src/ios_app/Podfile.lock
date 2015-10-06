@@ -12,7 +12,7 @@ PODS:
 
 DEPENDENCIES:
   - GoogleAnalytics
-  - Parse (= 1.6)
+  - Parse
   - Pinterest-iOS
 
 SPEC CHECKSUMS:

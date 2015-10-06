@@ -3,13 +3,10 @@
 
 target 'Super Duper' do
 
-pod 'Parse', '1.6'
+pod 'Parse'
 pod 'GoogleAnalytics'
 pod 'Pinterest-iOS'
 
 end
 
-target 'Super DuperTests' do
-
-end
 

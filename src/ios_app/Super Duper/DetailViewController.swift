@@ -67,12 +67,12 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
             if (loader == nil) {
                 //var loaderWidth = 272
                 //var loaderHeight = 272
-                var loaderWidth = 289
-                var loaderHeight = 327
-                var vWidth = self.view.frame.size.width
-                var vHeight = self.view.frame.size.height
-                var loaderX = (vWidth - CGFloat(loaderWidth)) / 2
-                var loaderY = (vHeight - CGFloat(loaderHeight)) / 2
+                let loaderWidth = 289
+                let loaderHeight = 327
+                let vWidth = self.view.frame.size.width
+                let vHeight = self.view.frame.size.height
+                let loaderX = (vWidth - CGFloat(loaderWidth)) / 2
+                let loaderY = (vHeight - CGFloat(loaderHeight)) / 2
                 
                 loader = UIWebView(frame: CGRectMake(loaderX, loaderY / 2, CGFloat(loaderWidth), CGFloat(loaderHeight)))
                 loader!.backgroundColor = UIColor(rgba: "#F0F1F6")
@@ -96,26 +96,26 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         
         
         if (self.matchPhotos.count > 0) {
-            var pColor = self.product!["color"] as String
-            var bName = self.brand!["name"] as String
-            var mpColor = self.matchedProduct!["color"] as String
-            var mbName = self.matchedProductBrand!["name"] as String
+            let pColor = self.product!["color"] as! String
+            let bName = self.brand!["name"]as! String
+            let mpColor = self.matchedProduct!["color"] as! String
+            let mbName = self.matchedProductBrand!["name"] as! String
             
-            var photo = self.matchPhotos[self.currentIndex] as? PFObject
-            var imageFile = photo!["image"] as PFFile
+            let photo = self.matchPhotos[self.currentIndex] as? PFObject
+            let imageFile = photo!["image"] as! PFFile
             let imageUrl = imageFile.url
             
-            let sourceUrl: NSString = "http://getsuperduper.com"
+//            let sourceUrl: NSString = "http://getsuperduper.com"
             let description: NSString = "SuperDuper found this : " + bName + " " + pColor + " + " + mbName + " " + mpColor
             
             
             
-            (segue.destinationViewController as ShareTableViewController).bName = bName
-            (segue.destinationViewController as ShareTableViewController).pColor = pColor
-            (segue.destinationViewController as ShareTableViewController).mbName = mbName
-            (segue.destinationViewController as ShareTableViewController).mpColor = mpColor
-            (segue.destinationViewController as ShareTableViewController).desc = description as String
-            (segue.destinationViewController as ShareTableViewController).imageUrl = imageUrl
+            (segue.destinationViewController as! ShareTableViewController).bName = bName
+            (segue.destinationViewController as! ShareTableViewController).pColor = pColor
+            (segue.destinationViewController as! ShareTableViewController).mbName = mbName
+            (segue.destinationViewController as! ShareTableViewController).mpColor = mpColor
+            (segue.destinationViewController as! ShareTableViewController).desc = description as String
+            (segue.destinationViewController as! ShareTableViewController).imageUrl = imageUrl
         } else {
             let alertController = UIAlertController(title: "SuperDuper", message:
                 "We're still working on this match! Once we have a photo here, you will be able to share it. In the meantime, go Back and persue other colors!", preferredStyle: UIAlertControllerStyle.Alert)
@@ -134,8 +134,8 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
             self.showLoader(true)
             
             self.product = self.detailItem as? PFObject
-            var relation : PFRelation = self.product!.relationForKey("matches")
-            var query = relation.query()
+            let relation : PFRelation = self.product!.relationForKey("matches")
+            let query = relation.query()
             query.whereKey("visible", equalTo: true)
             query.orderByAscending("orderIndex")
             
@@ -156,7 +156,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
                 }
             })
             
-            var tracker = GAI.sharedInstance().defaultTracker
+//            var tracker = GAI.sharedInstance().defaultTracker
 //            tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "product_selected", label: "ui_action", value: nil).build() as [NSObject : AnyObject])
         }
     }
@@ -164,7 +164,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     func configureView() {
         self.clearData()
         // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
+        if let _: AnyObject = self.detailItem {
             self.getBrand({
                 if (self.items.count > 0) {
                     self.loadMatch()
@@ -177,7 +177,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     
     
     func getBrand(callback: (() -> Void)!) {
-        var mb = self.detailItem!["brand"] as? PFObject
+        let mb = self.detailItem!["brand"] as? PFObject
         
         mb?.fetchInBackgroundWithBlock({(PFObject object, NSError error) in
             if (error != nil) {
@@ -190,7 +190,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     }
     
     func getMatchProduct(callback: (() -> Void)!) {
-        var mp = self.match!["match"] as? PFObject
+        let mp = self.match!["match"] as? PFObject
         
         mp?.fetchInBackgroundWithBlock({(PFObject object, NSError error) in
             if (error != nil) {
@@ -203,7 +203,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     }
     
     func getMatchProductBrand(callback: (() -> Void)!) {
-        var mb = self.matchedProduct!["brand"] as? PFObject
+        let mb = self.matchedProduct!["brand"] as? PFObject
         mb?.fetchInBackgroundWithBlock({(PFObject object, NSError error) in
             if (error != nil) {
                 NSLog("error " + error.localizedDescription)
@@ -215,8 +215,8 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     }
     
     func getMatchPhotos(callback: (() -> Void)!) {
-        var relation : PFRelation = self.match!.relationForKey("photos")
-        var query = relation.query()
+        let relation : PFRelation = self.match!.relationForKey("photos")
+        let query = relation.query()
         query.whereKey("visible", equalTo: true)
         query.orderByAscending("orderIndex")
         query.findObjectsInBackgroundWithBlock({(NSArray objects, NSError error) in
@@ -235,17 +235,17 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     
     func downloadMatchPhotos(callback: (() ->Void)!) {
         self.matchImages = []
-        var downloadCount = 0
+//        var downloadCount = 0
         
         if self.matchPhotos.count == 0 {
             //var image = UIImage(named: "no_image.jpg")
-            var app = UIApplication.sharedApplication().delegate as AppDelegate
-            var image = app.noPics["no_shoot"]
+            let app = UIApplication.sharedApplication().delegate as! AppDelegate
+            let image = app.noPics["no_shoot"]
             self.matchImages.append(image!)
             callback()
         } else {
             
-            self.downloadPhoto(0, photo: self.matchPhotos[0] as PFObject, callback: callback)
+            self.downloadPhoto(0, photo: self.matchPhotos[0] as! PFObject, callback: callback)
             /*
             for (index, photo) in enumerate(self.matchPhotos) {
                 self.matchImages.insert(UIImage(named: "Icon.png")!, atIndex:index)
@@ -277,16 +277,16 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     
     func downloadPhoto(index: Int, photo:PFObject, callback: (() -> Void)!) {
         var newIndex = index
-        var imageFile = photo["image"] as PFFile
+        let imageFile = photo["image"] as! PFFile
         imageFile.getDataInBackgroundWithBlock({(NSData imageData, NSError error) in
             if (error != nil) {
                 
             } else {
-                var image = UIImage(data: imageData)
+                let image = UIImage(data: imageData)
                 self.matchImages.append(image!)
                 newIndex++
                 if (newIndex < self.matchPhotos.count) {
-                    self.downloadPhoto(newIndex, photo: self.matchPhotos[newIndex] as PFObject, callback: callback)
+                    self.downloadPhoto(newIndex, photo: self.matchPhotos[newIndex] as! PFObject, callback: callback)
                 } else {
                     callback()
                 }
@@ -298,7 +298,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController?
     {
-        var index = (viewController as MatchViewController).pageIndex
+        var index = (viewController as! MatchViewController).pageIndex
         
         if (index == 0) || (index == NSNotFound) {
             return nil
@@ -312,7 +312,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
     {
-        var index = (viewController as MatchViewController).pageIndex
+        var index = (viewController as! MatchViewController).pageIndex
         
         if index == NSNotFound {
             return nil
@@ -336,7 +336,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         
         
         // Create a new view controller and pass suitable data.
-        let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MatchViewController") as MatchViewController
+        let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MatchViewController") as! MatchViewController
         pageContentViewController.image = self.matchImages[index]
         pageContentViewController.pageIndex = index
         self.currentIndex = index
@@ -374,7 +374,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     }
     
     // MARK: MFMailComposeViewControllerDelegate Method
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -382,8 +382,8 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
-            var pColor = self.product!["color"] as String
-            var bName = self.brand!["name"] as String
+            let pColor = self.product!["color"] as! String
+            let bName = self.brand!["name"] as! String
             mailComposeViewController.setToRecipients(["Duper@getsuperduper.com"])
             mailComposeViewController.setSubject("Dupe Suggestion for " + bName + " " + pColor)
 
@@ -400,19 +400,19 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         if (self.matchPhotos.count > 0) {
             
             
-            var pColor = self.product!["color"] as String
-            var bName = self.brand!["name"] as String
-            var mpColor = self.matchedProduct!["color"] as String
-            var mbName = self.matchedProductBrand!["name"] as String
-            var activeController = self.pageViewController!.viewControllers.first! as MatchViewController
-            var photo = self.matchPhotos[activeController.pageIndex] as? PFObject
-            var imageFile = photo!["image"] as PFFile
+            let pColor = self.product!["color"] as! String
+            let bName = self.brand!["name"] as! String
+            let mpColor = self.matchedProduct!["color"] as! String
+            let mbName = self.matchedProductBrand!["name"] as! String
+            let activeController = self.pageViewController!.viewControllers!.first! as! MatchViewController
+            let photo = self.matchPhotos[activeController.pageIndex] as? PFObject
+            let imageFile = photo!["image"] as! PFFile
             let imageUrl = imageFile.url
             
             let sourceUrl: NSString = "http://getsuperduper.com"
             let pinDescription: NSString = "I found this on the SuperDuper app:" + bName + " " + pColor + " = " + mbName + " " + mpColor
             
-            var baPinterest = PinterestWrapper.sharedInstance()
+            let baPinterest = PinterestWrapper.sharedInstance()
             baPinterest.pinRecipe(imageUrl, sourceURL:sourceUrl as String, description:pinDescription as String)
         } else {
             let alertController = UIAlertController(title: "Sorry", message:
@@ -429,10 +429,10 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
 
-            var pColor = self.product!["color"] as String
-            var bName = self.brand!["name"] as String
-            var mpColor = self.matchedProduct!["color"] as String
-            var mbName = self.matchedProductBrand!["name"] as String
+            let pColor = self.product!["color"] as! String
+            let bName = self.brand!["name"] as! String
+            let mpColor = self.matchedProduct!["color"] as! String
+            let mbName = self.matchedProductBrand!["name"] as! String
             
             mailComposeViewController.setToRecipients(["Duper@getsuperduper.com"])
             mailComposeViewController.setSubject("NOT DUPES: " + bName + " " + pColor + " + " + mbName + " " + mpColor)
@@ -448,7 +448,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         if (self.matchIndex < self.items.count - 1) {
             self.matchIndex++
             self.loadMatch()
-            var tracker = GAI.sharedInstance().defaultTracker
+//            var tracker = GAI.sharedInstance().defaultTracker
 //            tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "next_match", label: "ui_action", value: nil).build() as [NSObject : AnyObject])
         }
     }
@@ -464,14 +464,14 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         var brandName = ""
         
         if (self.matchedProductBrand != nil) {
-            brandName = self.matchedProductBrand!["name"] as String
+            brandName = self.matchedProductBrand!["name"] as! String
         }
 
         
         if (self.items.count == 0 || brandName == "?") {
             self.pageToolbar!.removeFromSuperview()
             
-            var actionItems = [
+            let actionItems = [
                 UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
                 suggestButton!,
                 UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
@@ -506,7 +506,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
                 negSep.width = -10
             }*/
             
-            var actionItems = [
+            let actionItems = [
                 UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
                 suggestButton!,
                 UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
@@ -537,8 +537,8 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
                     self.downloadMatchPhotos({
                         if (!self.firstMatchImageLoaded) {
                             self.firstMatchImageLoaded = true
-                            var controller : MatchViewController = self.viewControllerAtIndex(0)!
-                            var controllers = [controller]
+                            let controller : MatchViewController = self.viewControllerAtIndex(0)!
+                            let controllers = [controller]
                             self.pageViewController!.setViewControllers(controllers, direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
                         }
                         self.pageViewController!.dataSource = self
@@ -549,14 +549,14 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     }
     
     func createPageToolbar() {
-        var width = view.frame.size.width
-        var height = view.frame.size.height
+        let width = view.frame.size.width
+        let height = view.frame.size.height
         pageToolbar = UIToolbar(frame:CGRectMake(0, height - 152, width,  44))
         pageToolbar?.backgroundColor = UIColor(rgba: "#B70071")
         pageToolbar?.barTintColor = UIColor(rgba: "#B70071")
 
-        var prevImage = UIImage(named: "previous_arrow_2X")
-        var prevImageView = UIImageView(frame: CGRectMake(0, 0, 15, 15))
+        let prevImage = UIImage(named: "previous_arrow_2X")
+        let prevImageView = UIImageView(frame: CGRectMake(0, 0, 15, 15))
         prevImageView.contentMode = UIViewContentMode.ScaleAspectFit
         prevImageView.image = prevImage
         prevButton = UIBarButtonItem(customView: prevImageView)
@@ -564,8 +564,8 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         prevTitleButton = UIBarButtonItem(title: "previous dupe", style: UIBarButtonItemStyle.Plain, target: self, action: "previous")
         prevTitleButton!.tintColor = UIColor(rgba: "#ffffff")
         
-        var nextImage = UIImage(named: "next_arrow_2X")
-        var nextImageView = UIImageView(frame: CGRectMake(0, 0, 15, 15))
+        let nextImage = UIImage(named: "next_arrow_2X")
+        let nextImageView = UIImageView(frame: CGRectMake(0, 0, 15, 15))
         nextImageView.contentMode = UIViewContentMode.ScaleAspectFit
         nextImageView.image = nextImage
         nextButton = UIBarButtonItem(customView: nextImageView)
@@ -584,8 +584,8 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     }
     
     func createActionsToolbar() {
-        var width = view.frame.size.width
-        var height = view.frame.size.height
+        let width = view.frame.size.width
+        let height = view.frame.size.height
         actionsToolbar = UIToolbar(frame:CGRectMake(0, height - 108, width,  44))
         actionsToolbar!.backgroundColor = UIColor(rgba: "#4D1549")
         actionsToolbar!.barTintColor = UIColor(rgba: "#4D1549")
@@ -593,8 +593,8 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
 
         
 
-        var suggestImage = UIImage(named: "SuperDuper_icon_send_15x15.png")
-        var suggestBtn:UIButton = createActionButton(" Suggest another dupe", action: "suggest")
+        let suggestImage = UIImage(named: "SuperDuper_icon_send_15x15.png")
+        let suggestBtn:UIButton = createActionButton(" Suggest another dupe", action: "suggest")
         suggestBtn.setImage(suggestImage, forState: .Normal)
         suggestButton = UIBarButtonItem(customView: suggestBtn)
         
@@ -607,9 +607,9 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     }
 
     func createActionButton(title:String, action:String) -> UIButton {
-        var width = view.frame.size.width
-        var height = view.frame.size.height
-        var available = width / 2
+        let width = view.frame.size.width
+//        var height = view.frame.size.height
+        let available = width / 2
         var padding = CGFloat(15.0)
         
         if (width > 400) {
@@ -620,10 +620,10 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
             padding = CGFloat(10.0)
         }
 
-        var buttonWidth = available - padding
-        var frame = CGRectMake(0, 5, buttonWidth, 34)
+        let buttonWidth = available - padding
+        let frame = CGRectMake(0, 5, buttonWidth, 34)
         
-        var btn = UIButton(frame: frame)
+        let btn = UIButton(frame: frame)
         btn.layer.borderWidth = 0.5
         btn.layer.backgroundColor = UIColor.clearColor().CGColor
         btn.layer.borderColor = UIColor(rgba: "#B70070").CGColor
@@ -639,15 +639,15 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     }
     
     func createTipsView() {
-        var width = view.frame.size.width
-        var height = view.frame.size.height
+        let width = view.frame.size.width
+//        var height = view.frame.size.height
         
-        var plEnd = (priceLabel!.frame.origin.y + priceLabel!.frame.height)
-        var pgTbStart = self.pageToolbar!.frame.origin.y
-        var tipsHeight = pgTbStart - plEnd
-        var tipsWidth = width - 40
-        var toolBarHeights = CGFloat(88)
-        var startingY = plEnd
+        let plEnd = (priceLabel!.frame.origin.y + priceLabel!.frame.height)
+//        let pgTbStart = self.pageToolbar!.frame.origin.y
+//        var tipsHeight = pgTbStart - plEnd
+        let tipsWidth = width - 40
+//        var toolBarHeights = CGFloat(88)
+        let startingY = plEnd
         
         tipsView = UIWebView(frame: CGRectMake(20, startingY, tipsWidth, 5))
         tipsView!.backgroundColor = UIColor(rgba: "#F0F1F6")
@@ -669,24 +669,24 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     }
     
     func createDataLabels() {
-        var width = view.frame.size.width
-        var height = view.frame.size.height
-        var singleLineHeight = CGFloat(23.0)
-        var tripleLineHeight = CGFloat(53.0)
-        var priceHeight = CGFloat(25.0)
+        let width = view.frame.size.width
+//        var height = view.frame.size.height
+        let singleLineHeight = CGFloat(23.0)
+        let tripleLineHeight = CGFloat(53.0)
+        let priceHeight = CGFloat(25.0)
         
-        var vPadding = CGFloat(-6.0)
-        var leftColX = CGFloat(20.0)
-        var purpleColor = UIColor(rgba: "#4D1549")
-        var greyColor = UIColor(rgba: "#B5B9C8")
+        let vPadding = CGFloat(-6.0)
+        let leftColX = CGFloat(20.0)
+        let purpleColor = UIColor(rgba: "#4D1549")
+        let greyColor = UIColor(rgba: "#B5B9C8")
         
-        var startingY = pageViewController!.view.frame.origin.y + pageViewController!.view.frame.size.height
+        let startingY = pageViewController!.view.frame.origin.y + pageViewController!.view.frame.size.height
         
-        var divider = UIView(frame: CGRectMake((width - 2) / 2, startingY, 0.5, singleLineHeight + tripleLineHeight + priceHeight + (vPadding * 3)))
+        let divider = UIView(frame: CGRectMake((width - 2) / 2, startingY, 0.5, singleLineHeight + tripleLineHeight + priceHeight + (vPadding * 3)))
         divider.backgroundColor = greyColor
         
-        var rightColX = divider.frame.origin.x + 20
-        var labelWidth = divider.frame.origin.x - 25
+        let rightColX = divider.frame.origin.x + 20
+        let labelWidth = divider.frame.origin.x - 25
         
         
         brandLabel = UITextView(frame: CGRectMake(leftColX, startingY, labelWidth, singleLineHeight))
@@ -730,10 +730,10 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         
 
         
-        var ciTop = CGFloat(-11.0)
-        var ciLeft = CGFloat(-4.0)
-        var ciBottom = CGFloat(-11.0)
-        var ciRight = CGFloat(0.0)
+        let ciTop = CGFloat(-11.0)
+        let ciLeft = CGFloat(-4.0)
+        let ciBottom = CGFloat(-11.0)
+        let ciRight = CGFloat(0.0)
         
         
 
@@ -764,7 +764,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         }
         
         
-        var brandLabelHeight = brandLabel!.frame.size.height
+//        var brandLabelHeight = brandLabel!.frame.size.height
         
         colorLabel!.textColor = purpleColor
         brandLabel!.textColor = purpleColor
@@ -807,11 +807,11 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     func showData() {
         var price = Double(0)
         if (self.product!["price"] is Double) {
-            price = self.product!["price"] as Double
+            price = self.product!["price"] as! Double
         }
         
         
-        var brandStr = self.brand!["name"] as String
+        var brandStr = self.brand!["name"] as! String
         brandStr += "\n"
         
         var copyStr = ""
@@ -820,17 +820,17 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
         if (self.items.count > 0) {
             var mPrice = Double(0)
             if (self.matchedProduct!["price"] is Double) {
-                mPrice = self.matchedProduct!["price"] as Double
+                mPrice = self.matchedProduct!["price"] as! Double
             }
             
-            var mBrandStr = self.matchedProductBrand!["name"] as String
+            var mBrandStr = self.matchedProductBrand!["name"] as! String
             mBrandStr += "\n"
-            var cLbl = self.matchedProduct!["color"] as? String
+            let cLbl = self.matchedProduct!["color"] as? String
             matchColorLabel!.text = (cLbl != "?") ? cLbl : ""
             matchBrandLabel!.text = mBrandStr
             matchPriceLabel!.text = (mPrice > 0) ? NSString(format:"$%.2f", mPrice) as String : ""
             
-            copyStr = self.match!["displayCopy"] as String
+            copyStr = self.match!["displayCopy"] as! String
             html += copyStr
             html += "</span></p></body>"
         } else {
@@ -849,7 +849,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
             self.contentView!.addSubview(tipsView!)
         }
         
-        var coLbl = self.product!["color"] as? String
+        let coLbl = self.product!["color"] as? String
         colorLabel!.text = (coLbl != "?") ? coLbl : ""
         brandLabel!.text = brandStr
         priceLabel!.text = (price > 0) ? NSString(format:"$%.2f", price) as String : ""
@@ -860,13 +860,13 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
             
             
             //var image = UIImage(named: "no_dupes.jpg")
-            var app = UIApplication.sharedApplication().delegate as AppDelegate
-            var image = app.noPics["no_dupes"]
+            let app = UIApplication.sharedApplication().delegate as! AppDelegate
+            let image = app.noPics["no_dupes"]
             
             if (items.count > 0) {
                 //image = UIImage(named: "SuperDuper_appScreens_results_noShoot2.jpg")
-                var app = UIApplication.sharedApplication().delegate as AppDelegate
-                var image = app.noPics["no_shoot"]
+//                let app = UIApplication.sharedApplication().delegate as! AppDelegate
+//                var image = app.noPics["no_shoot"]
             }
             
             self.noPicImageView!.image = image
@@ -885,9 +885,9 @@ class DetailViewController: UIViewController, UIPageViewControllerDelegate ,UIPa
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        var h = tipsView!.stringByEvaluatingJavaScriptFromString("document.getElementById(\"copyText\").offsetHeight;")
+        let h = tipsView!.stringByEvaluatingJavaScriptFromString("document.getElementById(\"copyText\").offsetHeight;")
         if (h != "") {
-            var newHeight = h!.toInt()! + 20
+            let newHeight = Int(h!)! + 20
             
             tipsView!.frame = CGRectMake(tipsView!.frame.origin.x, tipsView!.frame.origin.y, tipsView!.frame.size.width, CGFloat(newHeight))
         }

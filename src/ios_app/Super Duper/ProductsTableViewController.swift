@@ -22,12 +22,12 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
             if (loader == nil) {
                 //var loaderWidth = 272
                 //var loaderHeight = 272
-                var loaderWidth = 289
-                var loaderHeight = 327
-                var vWidth = self.view.frame.size.width
-                var vHeight = self.view.frame.size.height
-                var loaderX = (vWidth - CGFloat(loaderWidth)) / 2
-                var loaderY = (vHeight - CGFloat(loaderHeight)) / 2
+                let loaderWidth = 289
+                let loaderHeight = 327
+                let vWidth = self.view.frame.size.width
+                let vHeight = self.view.frame.size.height
+                let loaderX = (vWidth - CGFloat(loaderWidth)) / 2
+                let loaderY = (vHeight - CGFloat(loaderHeight)) / 2
                 
                 loader = UIWebView(frame: CGRectMake(loaderX, loaderY / 2, CGFloat(loaderWidth), CGFloat(loaderHeight)))
                 loader!.backgroundColor = UIColor(rgba: "#F0F1F6")
@@ -62,11 +62,11 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
     var detailItem: AnyObject? {
         didSet {
             self.showLoader(true)
-            var obj = self.detailItem as PFObject
+            let obj = self.detailItem as! PFObject
             self.navigationItem.title = obj["name"] as? String
             
             // Update the view.
-            var query : PFQuery = PFQuery(className: "Product")
+            let query : PFQuery = PFQuery(className: "Product")
             query.whereKey("brand", equalTo: self.detailItem)
             query.whereKey("visible", equalTo: true)
             query.orderByAscending("color")
@@ -108,23 +108,23 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath) 
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         // Configure the cell...
-        let object = self.items.objectAtIndex(indexPath.row) as PFObject
+        let object = self.items.objectAtIndex(indexPath.row) as! PFObject
         
-        var lbl : UILabel = cell.viewWithTag(999) as UILabel
+        let lbl : UILabel = cell.viewWithTag(999) as! UILabel
         lbl.text = object["color"] as? String
         
-        var vw = cell.viewWithTag(998)
+        let vw = cell.viewWithTag(998)
         
         var hex = "#eaeaea"
         
-        if (object["hex"] as NSString != "") {
-            hex = object["hex"] as NSString as String
+        if (object["hex"] as! NSString != "") {
+            hex = object["hex"] as! NSString as String
         }
         
-        var backgroundColor = UIColor(rgba: hex)
+        let backgroundColor = UIColor(rgba: hex)
         vw?.backgroundColor = backgroundColor
         vw?.layer.cornerRadius = vw!.bounds.size.width / 2
         vw?.layer.masksToBounds = true
@@ -139,12 +139,12 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
     }
     
     override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        var footerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 44))
+        let footerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 44))
         footerView.backgroundColor = UIColor(rgba: "#4D1549")
         
-        var width = view.frame.size.width
+        let width = view.frame.size.width
         var height = view.frame.size.height
-        var available = width
+        let available = width
         var padding = CGFloat(15.0)
         
         if (width > 400) {
@@ -155,10 +155,10 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
             padding = CGFloat(10.0)
         }
         
-        var buttonWidth = available - padding - 30
-        var frame = CGRectMake(20, 5, buttonWidth, 34)
+        let buttonWidth = available - padding - 30
+        let frame = CGRectMake(20, 5, buttonWidth, 34)
         
-        var btn = UIButton(frame: frame)
+        let btn = UIButton(frame: frame)
         btn.layer.borderWidth = 0.5
         btn.layer.backgroundColor = UIColor(rgba: "#4D1549").CGColor
         btn.layer.borderColor = UIColor(rgba: "#B70070").CGColor
@@ -170,7 +170,7 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
         btn.setTitle("  Tell us what color we're missing", forState: UIControlState.Normal)
         btn.layer.cornerRadius = 5
         
-        var correctImage = UIImage(named: "SuperDuper_icon_send_15x15.png")
+        let correctImage = UIImage(named: "SuperDuper_icon_send_15x15.png")
         btn.setImage(correctImage, forState: .Normal)
 
         footerView.addSubview(btn)
@@ -184,7 +184,7 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
         
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
-            var bName = self.detailItem!["name"] as String
+            let bName = self.detailItem!["name"] as! String
             mailComposeViewController.setToRecipients(["Duper@getsuperduper.com"])
             mailComposeViewController.setSubject("Color Suggestion for " + bName )
             
@@ -208,7 +208,7 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
     }
     
     // MARK: MFMailComposeViewControllerDelegate Method
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -217,9 +217,9 @@ class ProductsTableViewController: UITableViewController, MFMailComposeViewContr
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if let indexPath = self.tableView.indexPathForSelectedRow() {
-            var object: AnyObject = self.items.objectAtIndex(indexPath.row);
-            (segue.destinationViewController as DetailViewController).detailItem = object
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            let object: AnyObject = self.items.objectAtIndex(indexPath.row);
+            (segue.destinationViewController as! DetailViewController).detailItem = object
         }
         
 

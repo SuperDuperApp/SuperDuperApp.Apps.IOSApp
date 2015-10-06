@@ -94,12 +94,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             if (loader == nil) {
                 //var loaderWidth = 272
                 //var loaderHeight = 272
-                var loaderWidth = 289
-                var loaderHeight = 327
-                var vWidth = self.view.frame.size.width
-                var vHeight = self.view.frame.size.height
-                var loaderX = (vWidth - CGFloat(loaderWidth)) / 2
-                var loaderY = (vHeight - CGFloat(loaderHeight)) / 2
+                let loaderWidth = 289
+                let loaderHeight = 327
+                let vWidth = self.view.frame.size.width
+                let vHeight = self.view.frame.size.height
+                let loaderX = (vWidth - CGFloat(loaderWidth)) / 2
+                let loaderY = (vHeight - CGFloat(loaderHeight)) / 2
                 
                 loader = UIWebView(frame: CGRectMake(loaderX, loaderY / 2, CGFloat(loaderWidth), CGFloat(loaderHeight)))
                 loader!.backgroundColor = UIColor(rgba: "#F0F1F6")
@@ -142,10 +142,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         self.navigationController!.navigationBar.tintColor = UIColor(rgba: "#B70071")
         
 
-        var footerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 84))
+        let footerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 84))
         footerView.backgroundColor = UIColor(rgba: "#4D1549")
         
-        var label = UILabel(frame: CGRectMake(0, 0, tableView.frame.width, 30))
+        let label = UILabel(frame: CGRectMake(0, 0, tableView.frame.width, 30))
         if let largeFont = UIFont(name: "Avenir Next Condensed", size: 18) {
             label.font = largeFont;
         }
@@ -187,7 +187,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         self.navigationItem.titleView = logoView
         self.tableView.contentInset = UIEdgeInsetsMake(-5, 0, 0, 0)
         
-        var query : PFQuery = PFQuery(className: "Brand")
+        let query : PFQuery = PFQuery(className: "Brand")
         query.whereKey("visible", equalTo: true)
         query.orderByAscending("name")
         
@@ -201,7 +201,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 self.tableView.reloadData()
                 
                 for item in self.items {
-                    self.getBrandPhotos(item as PFObject, callback: {
+                    self.getBrandPhotos(item as! PFObject, callback: {
                        self.tableView.reloadData()
                         self.showLoader(false)
                     });
@@ -217,7 +217,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func showInfo() {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let infoVC: InfoViewController = storyboard.instantiateViewControllerWithIdentifier("infoView") as InfoViewController
+        let infoVC: InfoViewController = storyboard.instantiateViewControllerWithIdentifier("infoView") as!InfoViewController
         
         let nc: UINavigationController = UINavigationController(rootViewController: infoVC)
         
@@ -235,8 +235,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     
     func getBrandPhotos(brand:PFObject , callback: (() -> Void)!) {
-        var relation : PFRelation = brand.relationForKey("photos")
-        var query = relation.query()
+        let relation : PFRelation = brand.relationForKey("photos")
+        let query = relation.query()
         query.whereKey("visible", equalTo: true)
         query.orderByAscending("orderIndex")
         query.findObjectsInBackgroundWithBlock({(NSArray objects, NSError error) in
@@ -248,16 +248,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 if (objects.count > 0) {
                     
                     
-                    for (index, p) in enumerate(objects) {
-                        var photo = objects[index] as PFObject
-                        var pName = photo["name"] as String
-                        var imageFile = photo["image"] as PFFile
+                    for (index, p) in objects.enumerate() {
+                        let photo = objects[index] as! PFObject
+                        let pName = photo["name"] as! String
+                        let imageFile = photo["image"] as! PFFile
                         if (index == 0) {
                             imageFile.getDataInBackgroundWithBlock({(NSData imageData, NSError error) in
                                 if (error != nil) {
                                     
                                 } else {
-                                    var image = UIImage(data: imageData)
+                                    let image = UIImage(data: imageData)
                                     self.brandPhotos[brand.objectId] = image!
                                     self.tableView.reloadData()
                                     
@@ -268,7 +268,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                                 if (error != nil) {
                                     
                                 } else {
-                                    var image = UIImage(data: imageData)
+                                    let image = UIImage(data: imageData)
                                     self.bgPhotos[brand.objectId] = image!
                                     self.tableView.reloadData()
                                     callback!()
@@ -296,7 +296,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func insertNewObject(sender: AnyObject) {
         let context = self.fetchedResultsController.managedObjectContext
         let entity = self.fetchedResultsController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) as NSManagedObject
+        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context) 
              
         // If appropriate, configure the new managed object.
         // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
@@ -304,7 +304,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
              
         // Save the context.
         var error: NSError? = nil
-        if !context.save(&error) {
+        do {
+            try context.save()
+        } catch let error1 as NSError {
+            error = error1
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             //println("Unresolved error \(error), \(error.userInfo)")
@@ -317,9 +320,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         
-        if let indexPath = self.tableView.indexPathForSelectedRow() {
-            var object: AnyObject = self.items.objectAtIndex(indexPath.row);
-            (segue.destinationViewController as ProductsTableViewController).detailItem = object
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            let object: AnyObject = self.items.objectAtIndex(indexPath.row);
+            (segue.destinationViewController as! ProductsTableViewController).detailItem = object
         }
         
         
@@ -352,10 +355,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 84))
+        let headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 84))
         headerView.backgroundColor = UIColor(rgba: "#4D1549")
 
-        var label = UILabel(frame: CGRectMake(50, 20, tableView.frame.width - 100, 64))
+        let label = UILabel(frame: CGRectMake(50, 20, tableView.frame.width - 100, 64))
         if let largeFont = UIFont(name: "Avenir Next Condensed", size: 18) {
             label.font = largeFont;
         }
@@ -446,7 +449,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
         self.configureCell(cell, atIndexPath: indexPath)
         
         
@@ -482,15 +485,15 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         //cell.userInteractionEnabled = false
         if (self.items.count > 0) {
             //var newRow = indexPath.row * 2;
-            var cellWidth = cell.frame.width
-            var cellHeight = cell.frame.height
-            var contentViewWidth = cellWidth - 60
-            var contentViewHeight = cellHeight - 10
-            var purpleColor = UIColor(rgba: "#4D1549")
+            let cellWidth = cell.frame.width
+            let cellHeight = cell.frame.height
+//            let contentViewWidth = cellWidth - 60
+//            let contentViewHeight = cellHeight - 10
+//            let purpleColor = UIColor(rgba: "#4D1549")
             
             //if (newRow + 1 < self.items.count) {
-                let object = self.items.objectAtIndex(indexPath.row) as PFObject
-                var contentView = self.customCell(object, cell:cell, index:0)
+                let object = self.items.objectAtIndex(indexPath.row) as! PFObject
+                let contentView = self.customCell(object, cell:cell, index:0)
                 //button1.tag = newRow
                 
                 //var contentView = UIView(frame: CGRectMake(15, 5, contentViewWidth, contentViewHeight))
@@ -525,18 +528,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func customCell(object: PFObject, cell: UITableViewCell, index:Int) -> UIView {
         //var cellWidth = cell.frame.width / 2 - 20
-        var cellWidth = cell.frame.width - 40
-        var cellHeight = cell.frame.height - 20
-        var x = CGFloat(0.0)
+        let cellWidth = cell.frame.width - 40
+        let cellHeight = cell.frame.height - 20
+//        var x = CGFloat(0.0)
         //if (index == 1) {
         //    x = cellWidth + CGFloat(10.0)
         //}
 
-        var contentView = UIView(frame: CGRectMake(20, 5, cellWidth, cellHeight))
+        let contentView = UIView(frame: CGRectMake(20, 5, cellWidth, cellHeight))
         contentView.backgroundColor = UIColor(rgba: "#ffffff")
         contentView.layer.cornerRadius = 5
         
-        var label:UILabel = UILabel(frame: CGRectMake(65, 0, cellWidth - cellHeight, cellHeight))
+        let label:UILabel = UILabel(frame: CGRectMake(65, 0, cellWidth - cellHeight, cellHeight))
         if let largeFont = UIFont(name: "Avenir Next Condensed", size: 16) {
             label.font = largeFont;
         }
@@ -546,13 +549,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         label.numberOfLines = 0
 
         
-        var imageView:UIImageView = UIImageView(frame: CGRectMake(5, 5, cellHeight - 12, cellHeight - 12))
+        let imageView:UIImageView = UIImageView(frame: CGRectMake(5, 5, cellHeight - 12, cellHeight - 12))
         if (self.brandPhotos[object.objectId] != nil) {
             imageView.image = self.brandPhotos[object.objectId]
         }
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         
-        var bgImageView:UIImageView = UIImageView(frame: CGRectMake(55 , 10, cellWidth - 60, 40))
+        let bgImageView:UIImageView = UIImageView(frame: CGRectMake(55 , 10, cellWidth - 60, 40))
         if (self.bgPhotos[object.objectId] != nil) {
             bgImageView.image = self.bgPhotos[object.objectId]
             
@@ -595,7 +598,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // Edit the sort key as appropriate.
         let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
-        let sortDescriptors = [sortDescriptor]
+//        let sortDescriptors = [sortDescriptor]
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -606,7 +609,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         _fetchedResultsController = aFetchedResultsController
         
     	var error: NSError? = nil
-    	if !_fetchedResultsController!.performFetch(&error) {
+    	do {
+            try _fetchedResultsController!.performFetch()
+        } catch let error1 as NSError {
+            error = error1
     	     // Replace this implementation with code to handle the error appropriately.
     	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
              //println("Unresolved error \(error), \(error.userInfo)")
@@ -634,19 +640,20 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
-            case .Insert:
-                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-            case .Delete:
-                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            case .Update:
-                self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
-            case .Move:
-                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-            default:
-                return
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        default:
+            return
         }
     }
+    
 
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.endUpdates()
@@ -694,7 +701,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     */
     
     // MARK: MFMailComposeViewControllerDelegate Method
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }

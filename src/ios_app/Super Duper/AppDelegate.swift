@@ -26,19 +26,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // Optional: configure GAI options.
-        var gai = GAI.sharedInstance()
+        let gai = GAI.sharedInstance()
         gai.trackUncaughtExceptions = true  // report uncaught exceptions
         gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
         gai.trackerWithTrackingId("UA-60750666-1")
         
-        var tracker = GAI.sharedInstance().defaultTracker
+//        var tracker = GAI.sharedInstance().defaultTracker
 //        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "app_launched", label: "App Launched", value: nil).build() as [NSObject : AnyObject])
         
         if let text = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
-            println(text)
+            print(text, terminator: "")
         }
 
-        var pageControl : UIPageControl = UIPageControl.appearance()
+        let pageControl : UIPageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = UIColor(rgba: "#B5B9C8")
         pageControl.currentPageIndicatorTintColor = UIColor(rgba: "#B8006F")        
         
@@ -46,8 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("3sC6jbS7mjqMHE9x2aanasCy6Bd47RnwvA3mQfWo", clientKey: "677CVNL6oDSejztx1HxkW1RNbwPRHWrNj5wPgm5H")
         Parse.enableLocalDatastore()
         // Override point for customization after application launch.
-        let navigationController = self.window!.rootViewController as UINavigationController
-        let controller = navigationController.topViewController as MasterViewController
+        let navigationController = self.window!.rootViewController as! UINavigationController
+        let controller = navigationController.topViewController as! MasterViewController
         controller.managedObjectContext = self.managedObjectContext
         
         self.getNoPics()
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func getNoPics() {
-        var query : PFQuery = PFQuery(className: "Settings")
+        let query : PFQuery = PFQuery(className: "Settings")
         query.whereKey("visible", equalTo: true)
         query.orderByAscending("name")
         
@@ -71,13 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 
                 for item in objects {
-                    var imageFile = item["image"] as PFFile
-                    var name = item["name"] as String
+                    let imageFile = item["image"] as! PFFile
+                    let name = item["name"] as! String
                     imageFile.getDataInBackgroundWithBlock({(NSData imageData, NSError error) in
                         if (error != nil) {
                             
                         } else {
-                            var image = UIImage(data: imageData)
+                            let image = UIImage(data: imageData)
                             self.noPics[name] = image!
                         }
                     })
@@ -119,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.getsuperduper.Super_Duper" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as NSURL
+        return urls[urls.count-1] 
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -135,18 +135,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("Super_Duper.sqlite")
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
-        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+        do {
+            try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+        } catch var error1 as NSError {
+            error = error1
             coordinator = nil
             // Report any error we got.
-            let dict = NSMutableDictionary()
+            var dict = [NSObject: AnyObject]()
+            let error :NSError = {    return NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict as [NSObject: AnyObject]) }()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
-            error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict as [NSObject : AnyObject])
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog("Unresolved error \(error), \(error!.userInfo)")
+            NSLog("Unresolved error \(error), \(error.userInfo)")
             abort()
+        } catch {
+            fatalError()
         }
         
         return coordinator
@@ -168,11 +173,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func saveContext () {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
-            if moc.hasChanges && !moc.save(&error) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog("Unresolved error \(error), \(error!.userInfo)")
-                abort()
+            if moc.hasChanges {
+                do {
+                    try moc.save()
+                } catch let error1 as NSError {
+                    error = error1
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    NSLog("Unresolved error \(error), \(error!.userInfo)")
+                    abort()
+                }
             }
         }
     }

@@ -79,16 +79,16 @@ class ShareTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("shareCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("shareCell", forIndexPath: indexPath) 
 
         // Configure the cell...
         switch indexPath.row {
         case 0:
-            cell.textLabel.text = "Pinterest"
+            cell.textLabel!.text = "Pinterest"
         case 1:
-            cell.textLabel.text = "Instagram"
+            cell.textLabel!.text = "Instagram"
         default:
-            cell.textLabel.text = "Facebook"
+            cell.textLabel!.text = "Facebook"
             
         }
         
@@ -112,13 +112,13 @@ class ShareTableViewController: UITableViewController {
         
 
         
-        var baPinterest = PinterestWrapper.sharedInstance()
+        let baPinterest = PinterestWrapper.sharedInstance()
         baPinterest.pinRecipe(self.imageUrl, sourceURL:"http://getsuperduper.com", description:self.desc)
         
     }
     
     func instagram() {
-        var instagramURL = NSURL(string: "instagram://location?id=1")
+        let instagramURL = NSURL(string: "instagram://location?id=1")
         if (UIApplication.sharedApplication().canOpenURL(instagramURL!)) {
             UIApplication.sharedApplication().openURL(instagramURL!)
         } else {
@@ -142,7 +142,7 @@ class ShareTableViewController: UITableViewController {
     func facebook() {
         
         // http://www.facebook.com/sharer.php?s=100&p[title]=titleheresexily&p[url]=http://www.mysexyurl.com&p[summary]=mysexysummaryhere&p[images][0]=http://www.urltoyoursexyimage.com
-        var instagramURL = NSURL(string: "facebook://s=100&p[title]=titleheresexily&p[url]=http://www.mysexyurl.com&p[summary]=mysexysummaryhere&p[images][0]=http://www.urltoyoursexyimage.com")
+        let instagramURL = NSURL(string: "facebook://s=100&p[title]=titleheresexily&p[url]=http://www.mysexyurl.com&p[summary]=mysexysummaryhere&p[images][0]=http://www.urltoyoursexyimage.com")
         if (UIApplication.sharedApplication().canOpenURL(instagramURL!)) {
             UIApplication.sharedApplication().openURL(instagramURL!)
         } else {

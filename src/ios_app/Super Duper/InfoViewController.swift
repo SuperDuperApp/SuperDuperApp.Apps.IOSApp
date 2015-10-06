@@ -1,4 +1,4 @@
-//
+ //
 //  InfoViewController.swift
 //  Super Duper
 //
@@ -18,13 +18,13 @@ class InfoViewController: UIViewController {
         
         
         //Then just cast the object as a String, but be careful, you may want to double check for nil
-        let version = nsObject as String
-        let build = nsBundleObject as String
+        let version = nsObject as! String
+        let build = nsBundleObject as! String
         self.title = "v" + version + "(" + build + ")"
         
 
         
-        var logButton : UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "close")
+        let logButton : UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "close")
         
         self.navigationItem.rightBarButtonItem = logButton
         self.view.backgroundColor = UIColor(rgba: "#4D1549")
@@ -36,7 +36,7 @@ class InfoViewController: UIViewController {
         self.navigationController!.navigationBar.layer.borderWidth = 0
         
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        self.navigationController!.navigationBar.titleTextAttributes = titleDict as [NSObject : AnyObject]
+        self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         
 
         let wv : UIWebView = UIWebView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))

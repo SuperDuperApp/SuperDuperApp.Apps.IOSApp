@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		403A19817CFF977DC26CCD06 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EEE47AA9178607CA9E16C836 /* libPods.a */; };
+		3DB73A126919B206D190C925 /* libPods-Super Duper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E33E825737A01FE7C006B340 /* libPods-Super Duper.a */; };
 		D20E89F31A472E3E00945E4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E89F21A472E3E00945E4D /* AppDelegate.swift */; };
 		D20E89F61A472E3E00945E4D /* Super_Duper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D20E89F41A472E3E00945E4D /* Super_Duper.xcdatamodeld */; };
 		D20E89F81A472E3E00945E4D /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E89F71A472E3E00945E4D /* MasterViewController.swift */; };
@@ -15,9 +15,6 @@
 		D20E89FD1A472E3E00945E4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D20E89FB1A472E3E00945E4D /* Main.storyboard */; };
 		D20E89FF1A472E3E00945E4D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D20E89FE1A472E3E00945E4D /* Images.xcassets */; };
 		D20E8A021A472E3E00945E4D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20E8A001A472E3E00945E4D /* LaunchScreen.xib */; };
-		D20E8A0E1A472E3E00945E4D /* Super_DuperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20E8A0D1A472E3E00945E4D /* Super_DuperTests.swift */; };
-		D20E8A191A472FD600945E4D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20E8A171A472FD600945E4D /* Bolts.framework */; };
-		D20E8A1A1A472FD600945E4D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20E8A181A472FD600945E4D /* Parse.framework */; };
 		D20E8A261A47304D00945E4D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20E8A1B1A47304D00945E4D /* AudioToolbox.framework */; };
 		D20E8A271A47304D00945E4D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20E8A1C1A47304D00945E4D /* CFNetwork.framework */; };
 		D20E8A281A47304D00945E4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20E8A1D1A47304D00945E4D /* CoreGraphics.framework */; };
@@ -58,8 +55,6 @@
 		D25F5AC41A4F32C2003F3F64 /* SuperDuper_button_correct.png in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AC31A4F32C2003F3F64 /* SuperDuper_button_correct.png */; };
 		D25F5AC61A4F32CD003F3F64 /* SuperDuper_button_share.png in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AC51A4F32CD003F3F64 /* SuperDuper_button_share.png */; };
 		D25F5AC81A4F32D6003F3F64 /* SuperDuper_button_suggest.png in Resources */ = {isa = PBXBuildFile; fileRef = D25F5AC71A4F32D6003F3F64 /* SuperDuper_button_suggest.png */; };
-		D260AC5F1A5B791D00AE54BD /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D260AC5C1A5B791D00AE54BD /* Pinterest.framework */; };
-		D260AC601A5B791D00AE54BD /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D260AC5E1A5B791D00AE54BD /* PinterestSDKResources.bundle */; };
 		D260AC631A5B7A5D00AE54BD /* PinterestWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D260AC621A5B7A5D00AE54BD /* PinterestWrapper.m */; };
 		D262820B1A582760004A25AB /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = D26281F91A582760004A25AB /* Icon-60.png */; };
 		D262820C1A582760004A25AB /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D26281FA1A582760004A25AB /* Icon-60@2x.png */; };
@@ -86,19 +81,9 @@
 		D2EF612E1B6F043400640FF2 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2EF612D1B6F043400640FF2 /* Accounts.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D20E8A081A472E3E00945E4D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D20E89E51A472E3E00945E4D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D20E89EC1A472E3E00945E4D;
-			remoteInfo = "Super Duper";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		202D7B945634EFF4C4DEB158 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		80C9A76ADF19CEA1ED453F6A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7F90E407440E672DF2E22535 /* Pods-Super Duper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Super Duper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Super Duper/Pods-Super Duper.debug.xcconfig"; sourceTree = "<group>"; };
+		C696D1156F06E46455D1A76B /* Pods-Super Duper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Super Duper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Super Duper/Pods-Super Duper.release.xcconfig"; sourceTree = "<group>"; };
 		D20E89ED1A472E3E00945E4D /* Super Duper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Super Duper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20E89F11A472E3E00945E4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D20E89F21A472E3E00945E4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,11 +93,8 @@
 		D20E89FC1A472E3E00945E4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D20E89FE1A472E3E00945E4D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D20E8A011A472E3E00945E4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		D20E8A071A472E3E00945E4D /* Super DuperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Super DuperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20E8A0C1A472E3E00945E4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D20E8A0D1A472E3E00945E4D /* Super_DuperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Super_DuperTests.swift; sourceTree = "<group>"; };
-		D20E8A171A472FD600945E4D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		D20E8A181A472FD600945E4D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		D20E8A1B1A47304D00945E4D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D20E8A1C1A47304D00945E4D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D20E8A1D1A47304D00945E4D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -153,8 +135,6 @@
 		D25F5AC31A4F32C2003F3F64 /* SuperDuper_button_correct.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SuperDuper_button_correct.png; sourceTree = "<group>"; };
 		D25F5AC51A4F32CD003F3F64 /* SuperDuper_button_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SuperDuper_button_share.png; sourceTree = "<group>"; };
 		D25F5AC71A4F32D6003F3F64 /* SuperDuper_button_suggest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SuperDuper_button_suggest.png; sourceTree = "<group>"; };
-		D260AC5C1A5B791D00AE54BD /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pinterest.framework; sourceTree = "<group>"; };
-		D260AC5E1A5B791D00AE54BD /* PinterestSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PinterestSDKResources.bundle; sourceTree = "<group>"; };
 		D260AC611A5B7A5C00AE54BD /* Super Duper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Super Duper-Bridging-Header.h"; sourceTree = "<group>"; };
 		D260AC621A5B7A5D00AE54BD /* PinterestWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinterestWrapper.m; sourceTree = "<group>"; };
 		D260AC641A5B7AD600AE54BD /* PinterestWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinterestWrapper.h; sourceTree = "<group>"; };
@@ -179,10 +159,9 @@
 		D27C32C31A90FBBD00994019 /* SuperDuper_appScreen_brands_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SuperDuper_appScreen_brands_logo.png; sourceTree = "<group>"; };
 		D27C32C51A90FCEB00994019 /* logo_beta_2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_beta_2X.png; sourceTree = "<group>"; };
 		D2EC1A9E1A577FDC002B3B3F /* SuperDuper_button_FB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SuperDuper_button_FB.png; sourceTree = "<group>"; };
-		D2EF61291B6F035D00640FF2 /* Pods */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pods; sourceTree = "<group>"; };
 		D2EF612B1B6F042A00640FF2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D2EF612D1B6F043400640FF2 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		EEE47AA9178607CA9E16C836 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E33E825737A01FE7C006B340 /* libPods-Super Duper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Super Duper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,30 +180,20 @@
 				D20E8A2C1A47304D00945E4D /* MobileCoreServices.framework in Frameworks */,
 				D20E8A2D1A47304D00945E4D /* QuartzCore.framework in Frameworks */,
 				D20E8A2E1A47304D00945E4D /* Security.framework in Frameworks */,
-				D260AC5F1A5B791D00AE54BD /* Pinterest.framework in Frameworks */,
 				D20E8A2F1A47304D00945E4D /* StoreKit.framework in Frameworks */,
 				D20E8A301A47304D00945E4D /* SystemConfiguration.framework in Frameworks */,
-				D20E8A1A1A472FD600945E4D /* Parse.framework in Frameworks */,
-				D20E8A191A472FD600945E4D /* Bolts.framework in Frameworks */,
-				403A19817CFF977DC26CCD06 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D20E8A041A472E3E00945E4D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				3DB73A126919B206D190C925 /* libPods-Super Duper.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		43C5BE46C56F95C3DA8D4C60 /* Pods */ = {
+		302BE6F8E9C8AC8F48E825CC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				202D7B945634EFF4C4DEB158 /* Pods.debug.xcconfig */,
-				80C9A76ADF19CEA1ED453F6A /* Pods.release.xcconfig */,
+				7F90E407440E672DF2E22535 /* Pods-Super Duper.debug.xcconfig */,
+				C696D1156F06E46455D1A76B /* Pods-Super Duper.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -232,12 +201,11 @@
 		D20E89E41A472E3E00945E4D = {
 			isa = PBXGroup;
 			children = (
-				D2EF61291B6F035D00640FF2 /* Pods */,
 				D20E8A311A47308000945E4D /* Frameworks */,
 				D20E89EF1A472E3E00945E4D /* Super Duper */,
 				D20E8A0A1A472E3E00945E4D /* Super DuperTests */,
 				D20E89EE1A472E3E00945E4D /* Products */,
-				43C5BE46C56F95C3DA8D4C60 /* Pods */,
+				302BE6F8E9C8AC8F48E825CC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -245,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				D20E89ED1A472E3E00945E4D /* Super Duper.app */,
-				D20E8A071A472E3E00945E4D /* Super DuperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -304,7 +271,6 @@
 			children = (
 				D2EF612D1B6F043400640FF2 /* Accounts.framework */,
 				D2EF612B1B6F042A00640FF2 /* Social.framework */,
-				D260AC5B1A5B791D00AE54BD /* Pinterest.embeddedframework */,
 				D20E8A1B1A47304D00945E4D /* AudioToolbox.framework */,
 				D20E8A1C1A47304D00945E4D /* CFNetwork.framework */,
 				D20E8A1D1A47304D00945E4D /* CoreGraphics.framework */,
@@ -316,9 +282,7 @@
 				D20E8A231A47304D00945E4D /* Security.framework */,
 				D20E8A241A47304D00945E4D /* StoreKit.framework */,
 				D20E8A251A47304D00945E4D /* SystemConfiguration.framework */,
-				D20E8A171A472FD600945E4D /* Bolts.framework */,
-				D20E8A181A472FD600945E4D /* Parse.framework */,
-				EEE47AA9178607CA9E16C836 /* libPods.a */,
+				E33E825737A01FE7C006B340 /* libPods-Super Duper.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -375,23 +339,6 @@
 			name = images;
 			sourceTree = "<group>";
 		};
-		D260AC5B1A5B791D00AE54BD /* Pinterest.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				D260AC5C1A5B791D00AE54BD /* Pinterest.framework */,
-				D260AC5D1A5B791D00AE54BD /* Resources */,
-			);
-			path = Pinterest.embeddedframework;
-			sourceTree = "<group>";
-		};
-		D260AC5D1A5B791D00AE54BD /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				D260AC5E1A5B791D00AE54BD /* PinterestSDKResources.bundle */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -399,11 +346,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D20E8A111A472E3E00945E4D /* Build configuration list for PBXNativeTarget "Super Duper" */;
 			buildPhases = (
-				28D7E5D588B756D53471FD7A /* Check Pods Manifest.lock */,
+				C5C97EC112A89AC36630FE3D /* Check Pods Manifest.lock */,
 				D20E89E91A472E3E00945E4D /* Sources */,
 				D20E89EA1A472E3E00945E4D /* Frameworks */,
 				D20E89EB1A472E3E00945E4D /* Resources */,
-				4E49E3ECD82A38F6C2D5E248 /* Copy Pods Resources */,
+				17067903A4493E49C912BD1A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -414,40 +361,20 @@
 			productReference = D20E89ED1A472E3E00945E4D /* Super Duper.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D20E8A061A472E3E00945E4D /* Super DuperTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D20E8A141A472E3E00945E4D /* Build configuration list for PBXNativeTarget "Super DuperTests" */;
-			buildPhases = (
-				D20E8A031A472E3E00945E4D /* Sources */,
-				D20E8A041A472E3E00945E4D /* Frameworks */,
-				D20E8A051A472E3E00945E4D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D20E8A091A472E3E00945E4D /* PBXTargetDependency */,
-			);
-			name = "Super DuperTests";
-			productName = "Super DuperTests";
-			productReference = D20E8A071A472E3E00945E4D /* Super DuperTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		D20E89E51A472E3E00945E4D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "LK (ad)Ventures, LLC";
 				TargetAttributes = {
 					D20E89EC1A472E3E00945E4D = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 5CH8KN57DF;
-					};
-					D20E8A061A472E3E00945E4D = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = D20E89EC1A472E3E00945E4D;
+						DevelopmentTeam = XZAVP3773J;
 					};
 				};
 			};
@@ -465,7 +392,6 @@
 			projectRoot = "";
 			targets = (
 				D20E89EC1A472E3E00945E4D /* Super Duper */,
-				D20E8A061A472E3E00945E4D /* Super DuperTests */,
 			);
 		};
 /* End PBXProject section */
@@ -495,7 +421,6 @@
 				D20E89FD1A472E3E00945E4D /* Main.storyboard in Resources */,
 				D26282111A582760004A25AB /* Icon-76@2x.png in Resources */,
 				D262821B1A582760004A25AB /* Icon@2x.png in Resources */,
-				D260AC601A5B791D00AE54BD /* PinterestSDKResources.bundle in Resources */,
 				D257078B1A83B841009438BF /* SuperDuper_results_tipsIcon_3X.png in Resources */,
 				D262820B1A582760004A25AB /* Icon-60.png in Resources */,
 				D26282161A582760004A25AB /* Icon-Small-50@2x.png in Resources */,
@@ -527,17 +452,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D20E8A051A472E3E00945E4D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		28D7E5D588B756D53471FD7A /* Check Pods Manifest.lock */ = {
+		17067903A4493E49C912BD1A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Super Duper/Pods-Super Duper-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5C97EC112A89AC36630FE3D /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -550,21 +483,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		4E49E3ECD82A38F6C2D5E248 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -587,23 +505,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D20E8A031A472E3E00945E4D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D20E8A0E1A472E3E00945E4D /* Super_DuperTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D20E8A091A472E3E00945E4D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D20E89EC1A472E3E00945E4D /* Super Duper */;
-			targetProxy = D20E8A081A472E3E00945E4D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D20E89FB1A472E3E00945E4D /* Main.storyboard */ = {
@@ -642,7 +544,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Brandon Scaife (9AEWR49MCM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brandon Scaife (9AEWR49MCM)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -662,6 +565,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "e7ca2a31-2c4b-4ae6-89b0-9af483d893ae";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -684,7 +588,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Brandon Scaife (XZAVP3773J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brandon Scaife (XZAVP3773J)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -697,6 +602,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "780afb92-1469-487a-8812-f02f70b615d1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -704,21 +610,22 @@
 		};
 		D20E8A121A472E3E00945E4D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 202D7B945634EFF4C4DEB158 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 7F90E407440E672DF2E22535 /* Pods-Super Duper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Brandon Scaife (9AEWR49MCM)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Pinterest.embeddedframework",
 				);
 				INFOPLIST_FILE = "Super Duper/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e7ca2a31-2c4b-4ae6-89b0-9af483d893ae";
 				SWIFT_OBJC_BRIDGING_HEADER = "Super Duper/Super Duper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -726,56 +633,23 @@
 		};
 		D20E8A131A472E3E00945E4D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80C9A76ADF19CEA1ED453F6A /* Pods.release.xcconfig */;
+			baseConfigurationReference = C696D1156F06E46455D1A76B /* Pods-Super Duper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Brandon Scaife (XZAVP3773J)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Pinterest.embeddedframework",
 				);
 				INFOPLIST_FILE = "Super Duper/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "780afb92-1469-487a-8812-f02f70b615d1";
 				SWIFT_OBJC_BRIDGING_HEADER = "Super Duper/Super Duper-Bridging-Header.h";
-			};
-			name = Release;
-		};
-		D20E8A151A472E3E00945E4D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Super DuperTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Super Duper.app/Super Duper";
-			};
-			name = Debug;
-		};
-		D20E8A161A472E3E00945E4D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Super DuperTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Super Duper.app/Super Duper";
 			};
 			name = Release;
 		};
@@ -796,15 +670,6 @@
 			buildConfigurations = (
 				D20E8A121A472E3E00945E4D /* Debug */,
 				D20E8A131A472E3E00945E4D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D20E8A141A472E3E00945E4D /* Build configuration list for PBXNativeTarget "Super DuperTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D20E8A151A472E3E00945E4D /* Debug */,
-				D20E8A161A472E3E00945E4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
